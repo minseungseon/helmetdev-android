@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
     <Button
         android:id="@+id/btnConnect"
         android:layout_width="wrap_content"
@@ -20,17 +21,26 @@
         android:id="@+id/btnSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="55dp"
         android:text="보내기"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnConnect" />
 
 
+    <TextView
+        android:id="@+id/pot"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center_horizontal"
+        android:hint="실시간 데이터"
+        android:textSize="30sp" />
 
 <com.github.mikephil.charting.charts.LineChart
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="400dp"
+    android:layout_marginTop="200dp"
+
     android:id="@+id/mchart">
 
 </com.github.mikephil.charting.charts.LineChart>
