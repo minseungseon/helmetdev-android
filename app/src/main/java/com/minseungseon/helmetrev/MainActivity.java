@@ -30,11 +30,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private Button testButton;
+    private Button resetButton;
     private BluetoothSPP bt;
     private List<Float> pot_values = new ArrayList<>();
 
     private static final String TAG = "MainActivity";
     private LineChart mChart;
+    private Thread thread;
     private int mFillColor = Color.argb(150,51,181,229);
 
     @Override
@@ -44,30 +47,60 @@ public class MainActivity extends AppCompatActivity {
         pot_values.add(0f);
         bt = new BluetoothSPP(this); //Initialize bluetooth
 
+        testButton = findViewById(R.id.testBtn);
+        resetButton = findViewById(R.id.resetBtn);
+
+        testButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                bt.stopService();
+
+            }
+
+        });
+        resetButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                mChart.invalidate();
+               mChart.clear();
+               pot_values.clear();
+            }
+
+        });
         if (!bt.isBluetoothAvailable()) { //블루투스 사용 불가
             Toast.makeText(getApplicationContext()
                     , "Bluetooth is not available"
                     , Toast.LENGTH_SHORT).show();
             finish();
         }
+        final int[] cnt = {0};
 
         bt.setOnDataReceivedListener(new BluetoothSPP.OnDataReceivedListener() { //데이터 수신
-            TextView pot = findViewById(R.id.pot);
+//            TextView pot = findViewById(R.id.pot);
             public void onDataReceived(byte[] data, String message) {
+                pot_values.clear();
                 String[] array = message.split(" ");
+               cnt[0]++;
+                System.out.print("\n\n\n" + cnt[0] + ": message  :" );
+                System.out.print(message);
+
+
                 for(int i=0; i<array.length; i++) {
-                System.out.println("printing data splited : " + array[i]);
+                    pot_values.add(Float.parseFloat(array[i]));
                 }
-                pot_values.add(Float.parseFloat(array[0]));
-                pot.setText(array[0]);
-                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                addEntry();
             }
         });
+
         bt.setBluetoothConnectionListener(new BluetoothSPP.BluetoothConnectionListener() { //연결됐을 때
             public void onDeviceConnected(String name, String address) {
                 Toast.makeText(getApplicationContext()
                         , "Connected to " + name + "\n" + address
                         , Toast.LENGTH_SHORT).show();
+
+
             }
 
             public void onDeviceDisconnected() { //연결해제
@@ -100,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
         description.setText("실시간 그래프 데이터");
         mChart.setDescription(description);
 
-        mChart.setNoDataText("No data for the moment");
         mChart.setBackgroundColor(Color.GRAY);
         mChart.setGridBackgroundColor(Color.GRAY);
         mChart.setHighlightPerDragEnabled(true);
@@ -122,8 +154,9 @@ public class MainActivity extends AppCompatActivity {
 
     XAxis x1 = mChart.getXAxis();
     x1.setTextColor(Color.WHITE);
+    x1.setTextSize(10f);
     x1.setDrawGridLines(false);
-    x1.setAvoidFirstLastClipping(true);
+//    x1.setAvoidFirstLastClipping(true);
 
     YAxis y1 = mChart.getAxisLeft();
     y1.setTextColor(Color.WHITE);
@@ -131,58 +164,32 @@ public class MainActivity extends AppCompatActivity {
     y1.setDrawGridLines(true);
 
     YAxis y12 = mChart.getAxisRight();
-    y12.setEnabled(false);
+        y12.setEnabled(false);
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        new Thread(new Runnable() {
-
-            @Override
-            public void run(){
-                for (int i = 0; i < 100; i++) {
-                    runOnUiThread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            addEntry();
-                        }
-
-                    });
-
-                    try {
-                        Thread.sleep(600);
-                    } catch (InterruptedException e) {
-
-                    }
-
-                }
-            }
-        }).start();
     }
 
     private void addEntry(){
         LineData data = mChart.getData();
-        float random_float = pot_values.size();
 
-        if(data!= null){
-            LineDataSet set = (LineDataSet) data.getDataSetByIndex(0);
+            if (data != null) {
+                LineDataSet set = (LineDataSet) data.getDataSetByIndex(0);
 
-            if(set == null) {
-                set = createSet();
-                data.addDataSet(set);
+                if (set == null) {
+                    set = createSet();
+                    data.addDataSet(set);
+                }
+                for(int i=0; i<pot_values.size(); i++) {
+                    data.addEntry(new Entry(set.getEntryCount(),
+                            pot_values.get(i)),
+                            0);
+                    mChart.notifyDataSetChanged();
+
+                }
+
+                mChart.setVisibleXRangeMaximum(10);
+                mChart.moveViewToX(data.getEntryCount());
             }
-//            data.addXValue("");
-            data.addEntry(new Entry(pot_values.get(pot_values.size()-1), set.getEntryCount()),0);
 
-            mChart.notifyDataSetChanged();
-
-            mChart.setVisibleXRange(0f,6f);
-            mChart.moveViewToX(data.getXMax()-7);
-        }
     }
 
     private LineDataSet createSet() {
@@ -209,9 +216,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void onStart() {
         super.onStart();
-        if (!bt.isBluetoothEnabled()) { //
+        if (!bt.isBluetoothEnabled()) {
             Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(intent, BluetoothState.REQUEST_ENABLE_BT);
+
         } else {
             if (!bt.isServiceAvailable()) {
                 bt.setupService();
