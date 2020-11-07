@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".LoginActivity">
     <ImageView
         android:id="@+id/img_logo"
@@ -11,17 +12,16 @@
         android:layout_height="wrap_content"
         android:src="@drawable/logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="170dp"/>
+        android:layout_marginTop="160dp"/>
 
     <EditText
         android:id="@+id/field_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/blackColor"
-        android:textColorHint="@color/blackColor"
+        android:backgroundTint="#ADADAD"
         android:hint="아이디 "
         android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="35dp"
         android:layout_below="@id/img_logo"
          />
 
@@ -29,11 +29,11 @@
         android:id="@+id/field_pw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/blackColor"
-        android:textColorHint="@color/blackColor"
+        android:backgroundTint="#ADADAD"
+
         android:hint="비밀번호"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="30dp"
         android:layout_below="@id/field_id"
         />
     <Button
@@ -41,9 +41,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="45dp"
         android:layout_below="@id/field_pw"
-
+        android:background="@drawable/button_gradation"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textSize="17dp"
         android:text="로그인"/>
 
 
@@ -54,17 +57,22 @@
         android:orientation="horizontal"
         android:layout_below="@+id/btn_login"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="22dp"
     >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="아직 회원이 아니신가요?"/>
-        <TextView
+
+        <Button
+            android:id="@+id/btn_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="아직 회원가입하기"/>
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:text="회원가입하기"/>
 
     </LinearLayout>
 
