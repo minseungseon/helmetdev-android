@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".myRecord">
+
+    <!-- TODO: Update blank fragment layout -->
+    <Button
+        android:id="@+id/btn_startAssessment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="85dp"
+        android:layout_below="@id/field_name"
+        android:background="@drawable/button_border"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:textColor="#2EAAF5"
+        android:text="측정 시작하기"/>
+
+</FrameLayout>

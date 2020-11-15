@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_page"
+    app:startDestination="@id/myRecord">
+
+    <fragment
+        android:id="@+id/myRecord"
+        android:name="com.minseungseon.helmetrev.myRecord"
+        android:label="fragment_my_record"
+        tools:layout="@layout/fragment_my_record" />
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.minseungseon.helmetrev.settings"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+</navigation>
