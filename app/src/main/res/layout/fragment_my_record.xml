@@ -5,18 +5,62 @@
     android:layout_height="match_parent"
     tools:context=".myRecord">
 
+
     <!-- TODO: Update blank fragment layout -->
+
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <View
+        android:id="@+id/shadow"
+        android:background="@drawable/shadow_down"
+        android:layout_width="match_parent"
+        android:layout_height="20px"
+        android:layout_marginTop="0dp">
+
+    </View>
+
+    <ImageView
+        android:id="@+id/homeimage"
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="3dp"
+        android:src="@drawable/homeimage" />
+
+<TextView
+    android:id="@+id/home_text"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:text="뇌파출력상태 확인하기"
+    android:textStyle="bold"
+    android:textSize="23dp"
+    android:textColor="#FFFF"
+    android:layout_marginTop="90dp"
+    />
     <Button
+        android:layout_below="@id/home_text"
         android:id="@+id/btn_startAssessment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="85dp"
-        android:layout_below="@id/field_name"
-        android:background="@drawable/button_border"
+        android:layout_marginTop="105dp"
+        android:background="@drawable/button_white_border"
         android:textStyle="bold"
         android:textSize="16dp"
-        android:textColor="#2EAAF5"
+        android:textColor="#FFFF"
         android:text="측정 시작하기"/>
 
+    <View
+        android:id="@+id/shadow2"
+        android:layout_below="@id/homeimage"
+        android:background="@drawable/shadow_down"
+        android:layout_width="match_parent"
+        android:layout_height="20px"
+        android:layout_marginTop="0dp">
+    </View>
+
+</RelativeLayout>
 </FrameLayout>

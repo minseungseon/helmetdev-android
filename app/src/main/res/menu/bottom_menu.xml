@@ -4,11 +4,11 @@
 
     <item
         android:id="@+id/myRecord"
-        android:title="내 기록"
+        android:title="기록하기"
         android:icon="@drawable/ic_myrecord"/>
 
     <item
         android:id="@+id/settings"
-        android:title="더보기"
-        android:icon="@drawable/ic_settings"/>
+        android:title="내 정보"
+        android:icon="@drawable/ic_person"/>
 </menu>
