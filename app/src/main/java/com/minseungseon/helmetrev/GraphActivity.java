@@ -1,11 +1,18 @@
 package com.minseungseon.helmetrev;
 import android.app.Activity;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.app.ActionBar;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -38,11 +45,21 @@ public class GraphActivity extends AppCompatActivity {
     private LineChart mChart;
     private Thread thread;
     private int mFillColor = Color.argb(150,51,181,229);
+    private Toolbar toolbar3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
+
+        // toolbar
+        toolbar3 = findViewById(R.id.toolbar3);
+        setSupportActionBar(toolbar3);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);//기본 제목을 없애줍니다.
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         pot_values.add(0f);
         bt = new BluetoothSPP(this); //Initialize bluetooth
 
@@ -132,8 +149,9 @@ public class GraphActivity extends AppCompatActivity {
         description.setText("실시간 그래프 데이터");
         mChart.setDescription(description);
 
-        mChart.setBackgroundColor(Color.GRAY);
-        mChart.setGridBackgroundColor(Color.GRAY);
+        mChart.setBackgroundColor(Color.WHITE);
+        mChart.setGridBackgroundColor(Color.WHITE);
+        mChart.setBorderColor(Color.GRAY);
         mChart.setHighlightPerDragEnabled(true);
         mChart.setTouchEnabled(true);
         mChart.setDragEnabled(true);
@@ -149,16 +167,16 @@ public class GraphActivity extends AppCompatActivity {
 
     Legend legend = mChart.getLegend();
     legend.setForm(Legend.LegendForm.LINE);
-    legend.setTextColor(Color.WHITE);
+    legend.setTextColor(Color.BLACK);
 
     XAxis x1 = mChart.getXAxis();
-    x1.setTextColor(Color.WHITE);
+    x1.setTextColor(Color.BLACK);
     x1.setTextSize(10f);
     x1.setDrawGridLines(false);
 //    x1.setAvoidFirstLastClipping(true);
 
     YAxis y1 = mChart.getAxisLeft();
-    y1.setTextColor(Color.WHITE);
+    y1.setTextColor(Color.BLACK);
     y1.setAxisMaximum(1000f);
     y1.setDrawGridLines(true);
 
@@ -203,7 +221,7 @@ public class GraphActivity extends AppCompatActivity {
         set.setFillAlpha(65);
         set.setFillColor(ColorTemplate.getHoloBlue());
         set.setHighLightColor(Color.rgb(244, 117, 177));
-        set.setValueTextColor(Color.WHITE);
+        set.setValueTextColor(Color.BLACK);
         set.setValueTextSize(10f);
 
         return set;
@@ -256,7 +274,28 @@ public class GraphActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.actionbar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+
+            case R.id.account:
+                Intent intent = new Intent( GraphActivity.this, SettingsActivity.class );
+                startActivity( intent );
+                break;
+            case android.R.id.home:
+                Intent intent2 = new Intent( GraphActivity.this, HomeActivity.class );
+                startActivity( intent2 );
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
 
