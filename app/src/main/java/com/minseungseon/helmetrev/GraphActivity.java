@@ -247,12 +247,12 @@ public class GraphActivity extends AppCompatActivity {
     }
 
     public void setup() {
-        Button btnSend = findViewById(R.id.btnSend); //데이터 전송
-        btnSend.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                bt.send("Text", true);
-            }
-        });
+//        Button btnSend = findViewById(R.id.btnSend); //데이터 전송
+//        btnSend.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                bt.send("Text", true);
+//            }
+//        });
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
