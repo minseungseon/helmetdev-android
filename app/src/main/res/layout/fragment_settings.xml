@@ -3,9 +3,151 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".settings">
+    tools:context=".settings"
+    android:background="#FFFF"
+    >
 
     <!-- TODO: Update blank fragment layout -->
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
+    <View
+        android:id="@+id/shadow"
+        android:background="@drawable/shadow_down"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:layout_marginTop="0dp">
+
+    </View>
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_below="@+id/shadow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="선민승님 안녕하세요!"
+        android:textStyle="bold"
+        android:textSize="23dp"
+        android:textColor="@android:color/black"
+        />
+
+    <View
+        android:id="@+id/line4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#eee9e9"
+        android:layout_below="@+id/user_name"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/user_info"
+        android:layout_below="@+id/line4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:text="사용자 정보"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:textColor="@android:color/black"
+        />
+
+    <LinearLayout
+        android:layout_below="@+id/user_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/user_info_first_row"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        >
+        <Button
+            android:id="@+id/user_info_sex"
+            android:layout_width="0dp"
+            android:layout_weight=".48"
+            android:layout_height="35dp"
+            android:text="여"
+
+            android:background="@drawable/button_border"
+            android:textStyle="normal"
+            android:textSize="16dp"
+            android:textColor="#2EAAF5"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.04" />
+        <Button
+            android:id="@+id/user_info_birth"
+            android:layout_width="0dp"
+            android:layout_weight=".48"
+            android:layout_height="35dp"
+            android:text="1999년 5월 1"
+            android:background="@drawable/button_border"
+            android:textStyle="normal"
+            android:textSize="16dp"
+            android:textColor="#2EAAF5"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/user_info_first_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/user_info_second_row"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        >
+        <Button
+            android:id="@+id/user_info_height"
+            android:layout_width="0dp"
+            android:layout_weight=".48"
+            android:layout_height="35dp"
+            android:text="170cm"
+
+            android:background="@drawable/button_border"
+            android:textStyle="normal"
+            android:textSize="16dp"
+            android:textColor="#2EAAF5"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.04" />
+        <Button
+            android:id="@+id/user_info_weight"
+            android:layout_width="0dp"
+            android:layout_weight=".48"
+            android:layout_height="35dp"
+            android:text="54kg"
+            android:background="@drawable/button_border"
+            android:textStyle="normal"
+            android:textSize="16dp"
+            android:textColor="#2EAAF5"
+            />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line5"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#eee9e9"
+        android:layout_below="@+id/user_info_second_row"
+        android:layout_marginTop="20dp"/>
+    <TextView
+        android:id="@+id/user_record"
+        android:layout_below="@+id/line5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:text="뇌파 기록"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:textColor="@android:color/black"
+        />
+</RelativeLayout>
 
 </FrameLayout>

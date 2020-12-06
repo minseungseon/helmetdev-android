@@ -16,13 +16,14 @@
         android:id="@+id/shadow"
         android:background="@drawable/shadow_down"
         android:layout_width="match_parent"
-        android:layout_height="20px"
+        android:layout_height="10dp"
         android:layout_marginTop="0dp">
 
     </View>
 
     <ImageView
         android:id="@+id/homeimage"
+        android:layout_below="@+id/shadow"
         android:layout_width="match_parent"
         android:layout_height="340dp"
         android:layout_marginTop="2dp"
