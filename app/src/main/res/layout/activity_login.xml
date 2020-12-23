@@ -10,32 +10,52 @@
         android:id="@+id/img_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:maxWidth="100dp"
         android:src="@drawable/logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="160dp"/>
+        android:layout_marginTop="160dp"
 
-    <EditText
-        android:id="@+id/field_id"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#ADADAD"
+        android:id="@+id/field_id"
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/img_logo"
+        >
+    <EditText
+        android:id="@+id/home_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:hint="아이디 "
+        android:textSize="15dp"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="35dp"
-        android:layout_below="@id/img_logo"
          />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/field_pw"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#ADADAD"
-
+        android:id="@+id/field_pw"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/field_id"
+        app:passwordToggleEnabled="true"
+        >
+    <EditText
+        android:id="@+id/home_pw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:textSize="15dp"
         android:hint="비밀번호"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="30dp"
-        android:layout_below="@id/field_id"
         />
+    </com.google.android.material.textfield.TextInputLayout>
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
@@ -44,11 +64,10 @@
         android:layout_marginTop="45dp"
         android:layout_below="@id/field_pw"
         android:background="@drawable/button_gradation"
-        android:textColor="#FFFFFF"
+        android:textColor="#FFFF"
         android:textStyle="bold"
         android:textSize="17dp"
         android:text="로그인"/>
-
 
     <LinearLayout
 

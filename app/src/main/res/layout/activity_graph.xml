@@ -21,6 +21,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/logo"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             >
         </ImageView>
 
@@ -30,7 +32,7 @@
         android:layout_below="@+id/toolbar3"
         android:background="@drawable/shadow_down"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="8dp"
         android:layout_marginTop="0dp">
 
     </View>

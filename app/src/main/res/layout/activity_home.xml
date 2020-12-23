@@ -36,6 +36,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/logo"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             >
         </ImageView>
 

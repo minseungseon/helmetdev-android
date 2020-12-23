@@ -7,39 +7,42 @@
     android:background="#FFFFFF"
     tools:context=".SignupActivity">
 
+
     <TextView
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="100dp"
         android:id="@+id/signup_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:textColor="@color/blackColor"
-        android:textSize="20dp"
+        android:textSize="30dp"
         android:textStyle="bold"
+        android:layout_marginLeft="30dp"
         android:text="회원가입" />
-<View
-    android:background="@drawable/shadow_down"
-    android:layout_width="match_parent"
-    android:layout_height="20px"
-    android:layout_below="@id/signup_label"
-    android:layout_marginTop="40dp">
 
-</View>
 <LinearLayout
     android:id="@+id/linear_id"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:layout_below="@id/signup_label"
-    android:layout_marginTop="75dp"
+    android:layout_marginTop="60dp"
     android:layout_marginHorizontal="24dp" >
 
-    <EditText
-        android:id="@+id/field_id"
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="0dp"
         android:layout_weight="0.8"
         android:layout_height="wrap_content"
+        android:id="@+id/field_id"
+        app:passwordToggleEnabled="true"
+
+        >
+    <EditText
+        android:id="@+id/id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:hint="아이디 "
-        android:layout_width="0dp" />
+         />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btn_id"
@@ -53,47 +56,86 @@
 
 </LinearLayout>
 
-    <EditText
-        android:id="@+id/field_pw"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="비밀번호"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="24dp"
+        android:id="@+id/field_pw"
         android:layout_below="@id/linear_id"
-        />
+        app:passwordToggleEnabled="true"
+        android:layout_marginTop="15dp"
+        >
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="비밀번호"
+            android:layout_marginHorizontal="24dp"
+            android:inputType="textPassword"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/field_pw2"
+        app:passwordToggleEnabled="true"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/field_pw"
+
+        >
+    <EditText
+        android:id="@+id/c_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="비밀번호 확인"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="30dp"
-        android:layout_below="@id/field_pw"
-        />
+        android:inputType="textPassword"
 
-    <EditText
+        />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/field_name"
+        app:passwordToggleEnabled="true"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/field_pw2"
+
+        >
+    <EditText
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="성명"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="30dp"
-        android:layout_below="@id/field_pw2"
+        />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/loading"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/field_name"
+        android:layout_gravity="center"
+        style="?android:progressBarStyle"
+        android:visibility="gone"
         />
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_regist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="55dp"
-        android:layout_below="@id/field_name"
-        android:background="@drawable/button_border"
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/loading"
+        android:background="@drawable/button_gradation"
         android:textStyle="bold"
         android:textSize="16dp"
-        android:textColor="#2EAAF5"
+        android:textColor="#FFFF"
         android:text="회원가입하기"/>
 
 
