@@ -115,8 +115,6 @@ public class GraphActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext()
                         , "Connected to " + name + "\n" + address
                         , Toast.LENGTH_SHORT).show();
-
-
             }
 
             public void onDeviceDisconnected() { //연결해제

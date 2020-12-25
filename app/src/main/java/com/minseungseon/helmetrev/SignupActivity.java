@@ -2,11 +2,14 @@ package com.minseungseon.helmetrev;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -54,21 +57,40 @@ public class SignupActivity extends AppCompatActivity {
         final String name = this.name.getText().toString().trim();
         final String id = this.id.getText().toString().trim();
         final String password = this.password.getText().toString().trim();
+        final String c_password = this.c_password.getText().toString().trim();
 
+        TextView text1;
+        text1 = (TextView)findViewById(R.id.c_password);
+
+        // password 확인 체크
+        if(!password.equals(c_password)) {
+            loading.setVisibility(View.GONE);
+            btn_regist.setVisibility(View.VISIBLE);
+            text1.setText("");
+            Toast.makeText(SignupActivity.this, "비밀번호가 동일하지 않습니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_REGIST,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                     try{
+                        System.out.println("여기까지 왓나");
+                        System.out.println(response);
+
                         JSONObject jsonObject = new JSONObject(response);
                         String success = jsonObject.getString("success");
 
-                        if(success.equals("1")){
-                            Toast.makeText(SignupActivity.this, "회원가입이 되었습니다.", Toast.LENGTH_SHORT).show();
-                        }
+                            if (success.equals("1")) {
+                                loading.setVisibility(View.GONE);
+                                Toast.makeText(SignupActivity.this, "회원가입이 되었습니다.", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent( SignupActivity.this, LoginActivity.class );
+                                startActivity( intent );
+                            }
+
                     }catch (JSONException e){
                         e.printStackTrace();
-                        Toast.makeText(SignupActivity.this, "회원가입에 실패하셨습니다." + e.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignupActivity.this, "JSON: 회원가입에 실패하셨습니다." + e.toString(), Toast.LENGTH_SHORT).show();
                         loading.setVisibility(View.GONE);
                         btn_regist.setVisibility(View.VISIBLE);
 
@@ -78,7 +100,7 @@ public class SignupActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(SignupActivity.this, "회원가입에 실패하셨습니다." + error.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignupActivity.this, "ERROR: 회원가입에 실패하셨습니다." + error.toString(), Toast.LENGTH_SHORT).show();
                         loading.setVisibility(View.GONE);
                         btn_regist.setVisibility(View.VISIBLE);
                     }
@@ -87,21 +109,15 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("user_name", name);
-                params.put("user_email",id);
-                params.put("user_password",password);
+                params.put("name", name);
+                params.put("email", id);
+                params.put("password", password);
 
                 return params;
             }
         };
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        stringRequest.setRetryPolicy(new com.android.volley.DefaultRetryPolicy(
-
-                20000 ,
-
-                com.android.volley.DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-
-                com.android.volley.DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(stringRequest);
     }
 }
